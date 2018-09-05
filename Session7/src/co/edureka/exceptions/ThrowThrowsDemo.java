@@ -71,7 +71,7 @@ class Banking{
 
 public class ThrowThrowsDemo {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws YourBankingException{
 		
 		System.out.println("==Banking Started==");
 		
@@ -82,7 +82,7 @@ public class ThrowThrowsDemo {
 		//}
 		
 		// Compiler generates an error to surround the method call with try catch
-		try{
+		/*try{
 			for(int i=1;i<=500;i++){
 				bRef.withdrawAgain(3000);
 			}
@@ -91,8 +91,12 @@ public class ThrowThrowsDemo {
 			
 			//e.printStackTrace(); // line numbers     // debugging purpose
 			//System.out.println("Exception: "+e);
-		}
-
+		}*/
+		
+		/*if(based on some condition){
+			throw new YourBankingException("This is thrown by main");
+		}*/
+		
 		System.out.println("==Banking Finished==");
 	}
 
