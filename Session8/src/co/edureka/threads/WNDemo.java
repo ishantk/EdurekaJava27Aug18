@@ -31,7 +31,8 @@ class ReaderThread extends Thread{
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			
+			// below statements in the sync block will not be executed
+			// they will be executed when notify is called
 			m.readMessage(); 
 		}
 	}
