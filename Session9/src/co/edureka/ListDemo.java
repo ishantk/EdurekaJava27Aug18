@@ -1,7 +1,12 @@
 package co.edureka;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
+import java.util.Vector;
 
 class Student{
 	int roll;
@@ -105,6 +110,8 @@ public class ListDemo {
 		System.out.println("idx of Jennie from the last is: "+idx);
 		
 		// 8. Iterating in the List
+		
+		// 8.1
 		System.out.println("-------For Loop------");
 		for(int i=0;i<list1.size();i++){
 			Object obj = list1.get(i);
@@ -120,6 +127,104 @@ public class ListDemo {
 			Student stu = list3.get(i);
 			System.out.println(stu);
 		}
+		
+		//8.2
+		System.out.println("-------Enhanced For Loop------");
+		for(Object obj : list1){
+			System.out.println(obj);
+		}
+		System.out.println("------------");
+		for(String str : list2){
+			System.out.println(str);
+		}
+		System.out.println("------------");
+		for(Student stu : list3){
+			System.out.println(stu);
+		}
+		
+		//8.3
+		System.out.println("-------Iterator------");
+		
+		Iterator itr1 = list1.iterator();
+		while(itr1.hasNext()){
+			Object obj = itr1.next();
+			System.out.println(obj);
+		}
+		System.out.println("------------");
+		Iterator<String> itr2 = list2.iterator();
+		/*System.out.println(itr2.next());
+		System.out.println(itr2.next());
+		System.out.println(itr2.next());*/
+		while(itr2.hasNext()){
+			String str = itr2.next();
+			System.out.println(str);
+			
+			if(str.equals("Jim")){
+				itr2.remove(); // will delete the element form list directly
+			}
+		}
+		System.out.println("------------");
+		Iterator<Student> itr3 = list3.iterator();
+		while(itr3.hasNext()){
+			Student stu = itr3.next();
+			System.out.println(stu);
+		}
+		
+		//8.4
+		System.out.println("-------List Iterator------");
+		ListIterator<String> listItr2 = list2.listIterator();
+		while(listItr2.hasNext()){
+			String str = listItr2.next();
+			System.out.println(str);
+		}
+		System.out.println("------------");
+		while(listItr2.hasPrevious()){
+			String str = listItr2.previous();
+			System.out.println(str);
+		}
+		
+		//8.5
+		System.out.println("-------Enumeration------");
+		Enumeration<String> enm = Collections.enumeration(list2); // read only structure
+		while(enm.hasMoreElements()){
+			String str = enm.nextElement();
+			System.out.println(str);		
+		}
+		
+		// ArrayList -> Not Thread-Safe i.e. it is not Synchronized !!
+		// Vector -> Sibling to ArrayList and is Thread-Safe i.e. Synchronized !!
+		
+		Vector<String> names = new Vector<String>();
+		names.add("John");
+		names.add("Jennie");
+		names.add("Jim");
+		names.add("Jack");
+		names.add("Joe");
+		
+		System.out.println("names are "+names);
+		
+		for(String str : names){
+			System.out.println(str);
+		}
+		
+		ArrayList<String> myList = new ArrayList<String>();
+		myList.add("John");
+		myList.add("Jennie");
+		myList.add("Jim");
+		myList.add("Jack");
+		myList.add("Joe");
+		
+		ArrayList<String> yourList = new ArrayList<String>();
+		yourList.add("Mike");
+		yourList.add("Leo");
+		yourList.add("Sia");
+		
+		yourList.addAll(myList); // We are appending data from myList into yourList
+		System.out.println("====myList====");
+		System.out.println(myList);
+		System.out.println("====yourList====");
+		System.out.println(yourList);
+		
 	}
 
 }
