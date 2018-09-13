@@ -11,13 +11,14 @@
 		<h3>Please Enter Your Details to Register</h3>
 		<br/>
 		
-		<form action="Awesome" method="post">
+		<form action="Controller" method="post">
 			Enter Your Name: <input type="text" name="txtName" placeholder="eg: John Watson"/>
 			<br/>
 			Enter Your Email: <input type="text" name="txtEmail" placeholder="eg: john@example.com"/>
 			<br/>
 			Enter Your Password: <input type="password" name="txtPassword" placeholder="Min 6 Characters"/>
 			<br/>
+			<input type="hidden" value="Register" name="txtType"/> 
 			<input type="submit" value="Register"/>
 		</form>
 		
