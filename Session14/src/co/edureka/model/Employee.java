@@ -1,6 +1,6 @@
 package co.edureka.model;
 
-public class Employee {
+public class Employee { // Bean or Model or POJO
 	
 	// Attributes
 	Integer eid;

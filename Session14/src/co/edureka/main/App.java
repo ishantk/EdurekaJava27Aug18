@@ -1,9 +1,13 @@
 package co.edureka.main;
 
+import java.util.List;
+
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 
 import co.edureka.model.Employee;
 
@@ -13,12 +17,12 @@ public class App {
 		
 		Employee emp1 = new Employee();
 		emp1.setEid(null); // Primary Key Auto Increment
-		emp1.setName("Mike");
-		emp1.setEmail("mike@example.com");
-		emp1.setSalry(56000);
+		emp1.setName("George");
+		emp1.setEmail("george@example.com");
+		emp1.setSalry(75000);
 		emp1.setAddress("Redwood Shores");
 		
-		Employee emp2 = new Employee(null, "Leo", 89000, "leo@example.com", "Pristine Magnum");
+		Employee emp2 = new Employee(null, "Harry", 40000, "harry@example.com", "Pristine Magnum");
 		
 		System.out.println(emp1);
 		System.out.println(emp2);
@@ -42,9 +46,54 @@ public class App {
 			
 			transaction = session.beginTransaction(); // Start a Transaction
 			
-			// Inserting the Data in DB
-			session.save(emp1);
-			session.save(emp2);
+			//1. Inserting the Data in DB
+			//session.save(emp1);
+			//session.save(emp2);
+			
+			//2. Get a Single Record from DB
+			//Employee emp = (Employee)session.get(Employee.class, 5);
+			//System.out.println("Employee is: "+emp);
+			
+			//3. Update Record in DB
+			/*Employee emp = (Employee)session.get(Employee.class, 5);
+			
+			emp.setName("George Watson");
+			emp.setEmail("george.w@example.com");
+			emp.setAddress("Country Homes");
+			
+			session.update(emp);*/
+			
+			//4. Delete from DB
+			/*Employee emp = new Employee();
+			emp.setEid(5); // We just need ID on which we will perform delete operation
+			session.delete(emp);*/
+			
+			//session.createSQLQuery(); -> Anything as in Raw SQL
+			
+			//5. Retrieve All !!
+			// Hibernate Query Language
+			//String hql = "From Employee"; // Very much like SQL
+			/*String hql = "From Employee where salary > 50000"; // Very much like SQL // salary is column name
+			List<Employee> empList = session.createQuery(hql).list();
+			for(Employee emp : empList){
+				System.out.println(emp);
+			}*/
+			
+			// Criteria API to Read All Records
+			//Criteria criteria = session.createCriteria(Employee.class);
+			//criteria.add(Restrictions.gt("salry", 50000)); // salry -> Attribute from Object
+			//criteria.add(Restrictions.and(lhs, rhs)); // can be used rules to retrieve data
+			
+			//List<Employee> empList = criteria.list();
+			//for(Employee emp : empList){
+			//	System.out.println(emp);
+			//}
+			
+			// We are adding 100 Employee Objects in the session
+			for(int i=1;i<=100;i++){
+				Employee emp = new Employee(null, "Employee"+i, 30000+i, "emp"+i+"@example.com", "Redwood Shores");
+				session.save(emp);
+			}
 			
 			transaction.commit(); // Fire a Transaction
 			System.out.println("==Transaction Commited...");
@@ -53,7 +102,7 @@ public class App {
 			e.printStackTrace();
 		}finally{
 			if(session!=null){
-				session.close(); // releaseing the connection
+				session.close(); // releasing the connection
 			}
 		}
 
