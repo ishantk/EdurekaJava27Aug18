@@ -2,6 +2,7 @@ package co.edureka.main;
 
 import java.util.List;
 
+import org.hibernate.CacheMode;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -41,6 +42,8 @@ public class App {
 			config.configure(); // Read the XML File !! -> hibernate.cfg.xml
 			
 			factory = config.buildSessionFactory();
+			// factory can cache data for multiple session objects
+		
 			
 			session = factory.openSession(); // Creating a connection to DB
 			
@@ -90,10 +93,29 @@ public class App {
 			//}
 			
 			// We are adding 100 Employee Objects in the session
-			for(int i=1;i<=100;i++){
+			/*for(int i=1;i<=100;i++){
 				Employee emp = new Employee(null, "Employee"+i, 30000+i, "emp"+i+"@example.com", "Redwood Shores");
 				session.save(emp);
-			}
+			}*/
+			
+			// We are fetching 2 Employee Objects | 2 Read Operations !!
+			Employee e1 = (Employee)session.get(Employee.class, 1);
+			Employee e2 = (Employee)session.get(Employee.class, 2);
+			
+			System.out.println(e1);
+			System.out.println(e2);
+			
+			System.out.println("###### Re Reading ######");
+			
+			// We are fetching 2 Employee Objects Again !!
+			// Select Query will not be fired again. Automatic Cache Management !!
+			Employee e3 = (Employee)session.get(Employee.class, 1);
+			Employee e4 = (Employee)session.get(Employee.class, 2);
+			
+			System.out.println(e3);
+			System.out.println(e4);
+			
+			//session.setCacheMode(CacheMode.IGNORE); // No cache
 			
 			transaction.commit(); // Fire a Transaction
 			System.out.println("==Transaction Commited...");
@@ -105,7 +127,9 @@ public class App {
 				session.close(); // releasing the connection
 			}
 		}
-
+	
+		// Once we close the Session, Cached Data will be LOST !!
+		
 	}
 
 }

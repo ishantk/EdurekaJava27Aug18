@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+    
+   <!-- <bean id="dbSrc1" class="co.edureka.model.DBSource" scope="prototype"> -->
+  <!--  <bean id="dbSrc1" class="co.edureka.model.DBSource" init-method="init" destroy-method="destroy">
+       <property name="url" value="https://www.edureka.co/lms/db"/>
+       <property name="user" value=""/>
+       <property name="password" value="john123"/>
+   </bean>
+   
+   <bean class="co.edureka.model.PostProcessor"/> -->
+   
+  <!--  <bean id="dbSrc2" class="co.edureka.model.DBSource">
+       <property name="url" value="https://www.edureka.co/employees/db"/>
+       <property name="user" value="admin"/>
+       <property name="password" value="edurekapass123"/>
+   </bean> -->
+   
+   <bean id="fRef" class="co.edureka.model.Father">
+       <property name="fname" value="John"/>
+       <property name="lname" value="Watson"/>
+       <property name="wealth" value="100000"/>
+   </bean>
+   
+   <bean id="cRef" class="co.edureka.model.Child" parent="fRef">
+       <property name="fname" value="Jennie"/>
+       <property name="companyName" value="Edureka"/>
+       <property name="vehicles" value="2"/>
+   </bean>
+
+</beans>
