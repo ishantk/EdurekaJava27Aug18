@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+    
+
+   
+   <!-- <bean id="adrs" class="co.edureka.model.Address">
+       <property name="adrsLine" value="Pristine Magnum"/>
+       <property name="city" value="Bengaluru"/>
+       <property name="state" value="Karnataka"/>
+       <property name="zipCode" value="520001"/>
+   </bean>
+   
+   <bean id="stu" class="co.edureka.model.Student">
+       <property name="rollNum" value="101"/>
+       <property name="name" value="Jennie"/>
+       <property name="age" value="20"/>
+       <property name="email" value="jennie@example.com"/>
+       <constructor-arg ref="adrs"/>  	Constructor Based Dependency Injection
+      <property name="address" ref="adrs"/>		Setter Based Dependency Injection
+      <property name="certificates">
+      	<list>
+      		<value>CCNA</value>
+      		<value>CCNP</value>
+      		<value>OCJP</value>
+      	</list>      	
+      </property>
+   </bean> -->
+   
+   <!-- <context:annotation-config/>
+   <bean id="ca" class="co.edureka.model.CA"/>
+   <bean id="cb" class="co.edureka.model.CB"/> -->
+   
+   <!-- <bean id="cb" class="co.edureka.model.CB">
+   	<property name="ca" ref="ca"/> Setter Based Dependency Injection
+   </bean> -->
+   
+   <bean id="emp" class="co.edureka.model.Employee">
+       <property name="eid" value="2018012"/>
+       <property name="name" value="John Watson"/>
+       <property name="exp" value="12"/>
+       <property name="competency" value="Software Developmenet Engr"/>
+       <property name="email" value="john@example.com"/>
+   </bean>
+   
+   <bean id="befAdv" class="co.edureka.model.BeforeAdvice"/>
+   <bean id="aftAdv" class="co.edureka.model.AfterAdvice"/>
+   
+   <bean id="empProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+   		<property name="target" ref="emp"/> <!-- Setter Injection -->
+   		<property name="interceptorNames">
+   			<list>
+   				<value>befAdv</value>
+   				<value>aftAdv</value>
+   			</list>
+   		</property>
+   </bean>
+   
+
+</beans>
