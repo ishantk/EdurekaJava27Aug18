@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>AJAX Example</title>
+
+<script type="text/javascript">
+
+	var request;
+
+	function sendInfo(){
+
+		var number = document.tableForm.txtNumber.value;
+		var url = "printTable.jsp?number="+number;
+
+		request = new XMLHttpRequest();
+
+		try{
+			request.onreadystatechange = getInfo;
+			request.open("GET", url, true);
+			request.send();
+		}catch(e){
+			alert("Some Exception !!");
+		}
+		
+	}
+
+	function getInfo(){
+		if(request.readyState == 4){
+			var res = request.responseText;
+			document.getElementById("data").innerHTML = res;
+		}
+	}
+
+</script>
+
+</head>
+<body>
+	
+	<center>
+		<h3>Print Table of a Number</h3>
+		<form name="tableForm">
+			<input type="text" name="txtNumber" placeholder="eg: 5" onkeyup="sendInfo()"/>
+			<br/>
+			<!-- <input type="button" value="Show Table" onclick="sendInfo()"/> -->
+		</form>
+		
+		<br/><br/>
+		
+		<h3>Table:</h3>
+		<span id="data">
+		
+		</span>
+		
+	</center>
+</body>
+</html>
